@@ -529,454 +529,454 @@ class ControladorUsuarios{
 	}
 
 	
-	/*=============================================
-	REGISTRO CON REDES SOCIALES
-	=============================================*/
+	// /*=============================================
+	// REGISTRO CON REDES SOCIALES
+	// =============================================*/
 
-	static public function ctrRegistroRedesSociales($datos){
+	// static public function ctrRegistroRedesSociales($datos){
 
-		$tabla = "usuarios";
-		$item = "email";
-		$valor = $datos["email"];
-		$emailRepetido = false;
+	// 	$tabla = "usuarios";
+	// 	$item = "email";
+	// 	$valor = $datos["email"];
+	// 	$emailRepetido = false;
 
-		$respuesta0 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+	// 	$respuesta0 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
 
-		if($respuesta0){
+	// 	if($respuesta0){
 
-			if($respuesta0["modo"] != $datos["modo"]){
+	// 		if($respuesta0["modo"] != $datos["modo"]){
 
-				echo '<script> 
+	// 			echo '<script> 
 
-						swal({
-							  title: "¡ERROR!",
-							  text: "¡El correo electrónico '.$datos["email"].', ya está registrado en el sistema con un método diferente a Google!",
-							  type:"error",
-							  confirmButtonText: "Cerrar",
-							  closeOnConfirm: false
-							},
+	// 					swal({
+	// 						  title: "¡ERROR!",
+	// 						  text: "¡El correo electrónico '.$datos["email"].', ya está registrado en el sistema con un método diferente a Google!",
+	// 						  type:"error",
+	// 						  confirmButtonText: "Cerrar",
+	// 						  closeOnConfirm: false
+	// 						},
 
-							function(isConfirm){
+	// 						function(isConfirm){
 
-								if(isConfirm){
-									history.back();
-								}
-						});
+	// 							if(isConfirm){
+	// 								history.back();
+	// 							}
+	// 					});
 
-				</script>';
+	// 			</script>';
 
-				$emailRepetido = false;
+	// 			$emailRepetido = false;
 
-			}
+	// 		}
 
-			$emailRepetido = true;
+	// 		$emailRepetido = true;
 
-		}else{
+	// 	}else{
 
-			$respuesta1 = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
+	// 		$respuesta1 = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
 
-		}
+	// 	}
 
-		if($emailRepetido || $respuesta1 == "ok"){
+	// 	if($emailRepetido || $respuesta1 == "ok"){
 
-			$respuesta2 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+	// 		$respuesta2 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
 
-			if($respuesta2["modo"] == "facebook"){
+	// 		if($respuesta2["modo"] == "facebook"){
 
-				session_start();
+	// 			session_start();
 
-				$_SESSION["validarSesion"] = "ok";
-				$_SESSION["id"] = $respuesta2["id"];
-				$_SESSION["nombre"] = $respuesta2["nombre"];
-				$_SESSION["foto"] = $respuesta2["foto"];
-				$_SESSION["email"] = $respuesta2["email"];
-				$_SESSION["password"] = $respuesta2["password"];
-				$_SESSION["modo"] = $respuesta2["modo"];
+	// 			$_SESSION["validarSesion"] = "ok";
+	// 			$_SESSION["id"] = $respuesta2["id"];
+	// 			$_SESSION["nombre"] = $respuesta2["nombre"];
+	// 			$_SESSION["foto"] = $respuesta2["foto"];
+	// 			$_SESSION["email"] = $respuesta2["email"];
+	// 			$_SESSION["password"] = $respuesta2["password"];
+	// 			$_SESSION["modo"] = $respuesta2["modo"];
 
-				echo "ok";
+	// 			echo "ok";
 
-			}else if($respuesta2["modo"] == "google"){
+	// 		}else if($respuesta2["modo"] == "google"){
 
-				$_SESSION["validarSesion"] = "ok";
-				$_SESSION["id"] = $respuesta2["id"];
-				$_SESSION["nombre"] = $respuesta2["nombre"];
-				$_SESSION["foto"] = $respuesta2["foto"];
-				$_SESSION["email"] = $respuesta2["email"];
-				$_SESSION["password"] = $respuesta2["password"];
-				$_SESSION["modo"] = $respuesta2["modo"];
+	// 			$_SESSION["validarSesion"] = "ok";
+	// 			$_SESSION["id"] = $respuesta2["id"];
+	// 			$_SESSION["nombre"] = $respuesta2["nombre"];
+	// 			$_SESSION["foto"] = $respuesta2["foto"];
+	// 			$_SESSION["email"] = $respuesta2["email"];
+	// 			$_SESSION["password"] = $respuesta2["password"];
+	// 			$_SESSION["modo"] = $respuesta2["modo"];
 
-				echo "<span style='color:white'>ok</span>";
+	// 			echo "<span style='color:white'>ok</span>";
 
-			}
+	// 		}
 
-			else{
+	// 		else{
 
-				echo "";
-			}
+	// 			echo "";
+	// 		}
 
-		}
-	}
+	// 	}
+	// }
 
-	/*=============================================
-	ACTUALIZAR PERFIL
-	=============================================*/
+	// /*=============================================
+	// ACTUALIZAR PERFIL
+	// =============================================*/
 
-	public function ctrActualizarPerfil(){
+	// public function ctrActualizarPerfil(){
 
-		if(isset($_POST["editarNombre"])){
+	// 	if(isset($_POST["editarNombre"])){
 
-			/*=============================================
-			VALIDAR IMAGEN
-			=============================================*/
+	// 		/*=============================================
+	// 		VALIDAR IMAGEN
+	// 		=============================================*/
 
-			$ruta = "";
+	// 		$ruta = "";
 
-			if(isset($_FILES["datosImagen"]["tmp_name"]) && !empty($_FILES["datosImagen"]["tmp_name"])){
+	// 		if(isset($_FILES["datosImagen"]["tmp_name"]) && !empty($_FILES["datosImagen"]["tmp_name"])){
 
-				/*=============================================
-				PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
-				=============================================*/
+	// 			/*=============================================
+	// 			PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+	// 			=============================================*/
 
-				$directorio = "vista/assets/img/usuarios/".$_POST["idUsuario"];
+	// 			$directorio = "vista/assets/img/usuarios/".$_POST["idUsuario"];
 
-				if(!empty($_POST["fotoUsuario"])){
+	// 			if(!empty($_POST["fotoUsuario"])){
 
-					unlink($_POST["fotoUsuario"]);
+	// 				unlink($_POST["fotoUsuario"]);
 				
-				}else{
+	// 			}else{
 
-					mkdir($directorio, 0755);
+	// 				mkdir($directorio, 0755);
 
-				}
+	// 			}
 
-				/*=============================================
-				GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-				=============================================*/
+	// 			/*=============================================
+	// 			GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+	// 			=============================================*/
 
-				list($ancho, $alto) = getimagesize($_FILES["datosImagen"]["tmp_name"]);
+	// 			list($ancho, $alto) = getimagesize($_FILES["datosImagen"]["tmp_name"]);
 
-				$nuevoAncho = 500;
-				$nuevoAlto = 500;
+	// 			$nuevoAncho = 500;
+	// 			$nuevoAlto = 500;
 
-				$aleatorio = mt_rand(100, 999);
+	// 			$aleatorio = mt_rand(100, 999);
 
-				if($_FILES["datosImagen"]["type"] == "image/jpeg"){
+	// 			if($_FILES["datosImagen"]["type"] == "image/jpeg"){
 
-					$ruta = "vista/assets/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".jpg";
+	// 				$ruta = "vista/assets/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".jpg";
 
-					/*=============================================
-					MOFICAMOS TAMAÑO DE LA FOTO
-					=============================================*/
+	// 				/*=============================================
+	// 				MOFICAMOS TAMAÑO DE LA FOTO
+	// 				=============================================*/
 
 
-					$origen = imagecreatefromjpeg($_FILES["datosImagen"]["tmp_name"]);
+	// 				$origen = imagecreatefromjpeg($_FILES["datosImagen"]["tmp_name"]);
 
-					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+	// 				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+	// 				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-					imagejpeg($destino, $ruta);
+	// 				imagejpeg($destino, $ruta);
 
-				}
+	// 			}
 
-				if($_FILES["datosImagen"]["type"] == "image/png"){
+	// 			if($_FILES["datosImagen"]["type"] == "image/png"){
 
-					$ruta = "vista/assets/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".png";
+	// 				$ruta = "vista/assets/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".png";
 
-					/*=============================================
-					MODIFICAMOS TAMAÑO DE LA FOTO
-					=============================================*/
+	// 				/*=============================================
+	// 				MODIFICAMOS TAMAÑO DE LA FOTO
+	// 				=============================================*/
 
-					$origen = imagecreatefrompng($_FILES["datosImagen"]["tmp_name"]);
+	// 				$origen = imagecreatefrompng($_FILES["datosImagen"]["tmp_name"]);
 
-					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+	// 				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-					imagealphablending($destino, FALSE);
+	// 				imagealphablending($destino, FALSE);
     			
-					imagesavealpha($destino, TRUE);
+	// 				imagesavealpha($destino, TRUE);
 
-					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+	// 				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-					imagepng($destino, $ruta);
+	// 				imagepng($destino, $ruta);
 
-				}
+	// 			}
 
-			}
+	// 		}
 
-			if($_POST["editarPassword"] == ""){
+	// 		if($_POST["editarPassword"] == ""){
 
-				$password = $_POST["passUsuario"];
+	// 			$password = $_POST["passUsuario"];
 
-			}else{
+	// 		}else{
 
-				$password =  md5($_POST["editarPassword"]);
+	// 			$password =  md5($_POST["editarPassword"]);
 
-			}
+	// 		}
 
-			$datos = array("nombre" => $_POST["editarNombre"],
-						   "email" => $_POST["editarEmail"],
-						   "ubicion"=>$_POST["editarUbicacion"],
-						   "password" => $password,
-						   "foto" => $ruta,
-						   "id" => $_POST["idUsuario"]);
+	// 		$datos = array("nombre" => $_POST["editarNombre"],
+	// 					   "email" => $_POST["editarEmail"],
+	// 					   "ubicion"=>$_POST["editarUbicacion"],
+	// 					   "password" => $password,
+	// 					   "foto" => $ruta,
+	// 					   "id" => $_POST["idUsuario"]);
 
-			$tabla = "usuarios";
+	// 		$tabla = "usuarios";
 
-			$respuesta = ModeloUsuarios::mdlActualizarPerfil($tabla, $datos);
+	// 		$respuesta = ModeloUsuarios::mdlActualizarPerfil($tabla, $datos);
 
-			if($respuesta == "ok"){
+	// 		if($respuesta == "ok"){
 
-				$_SESSION["validarSesion"] = "ok";
-				$_SESSION["id"] = $datos["id"];
-				$_SESSION["nombre"] = $datos["nombre"];
-				$_SESSION["foto"] = $datos["foto"];
-				$_SESSION["email"] = $datos["email"];
-				$_SESSION["ubicacion"] = $datos["ubicacion"];
-				$_SESSION["password"] = $datos["password"];
-				$_SESSION["modo"] = $_POST["modoUsuario"];
+	// 			$_SESSION["validarSesion"] = "ok";
+	// 			$_SESSION["id"] = $datos["id"];
+	// 			$_SESSION["nombre"] = $datos["nombre"];
+	// 			$_SESSION["foto"] = $datos["foto"];
+	// 			$_SESSION["email"] = $datos["email"];
+	// 			$_SESSION["ubicacion"] = $datos["ubicacion"];
+	// 			$_SESSION["password"] = $datos["password"];
+	// 			$_SESSION["modo"] = $_POST["modoUsuario"];
 
-				echo '<script> 
+	// 			echo '<script> 
 
-						swal({
-							  title: "¡OK!",
-							  text: "¡Su cuenta ha sido actualizada correctamente!",
-							  type:"success",
-							  confirmButtonText: "Cerrar",
-							  closeOnConfirm: false
-							},
+	// 					swal({
+	// 						  title: "¡OK!",
+	// 						  text: "¡Su cuenta ha sido actualizada correctamente!",
+	// 						  type:"success",
+	// 						  confirmButtonText: "Cerrar",
+	// 						  closeOnConfirm: false
+	// 						},
 
-							function(isConfirm){
+	// 						function(isConfirm){
 
-								if(isConfirm){
-									history.back();
-								}
-						});
+	// 							if(isConfirm){
+	// 								history.back();
+	// 							}
+	// 					});
 
-				</script>';
+	// 			</script>';
 
 
-			}
+	// 		}
 
-		}
+	// 	}
 
-	}
+	// }
 
-	/*=============================================
-	MOSTRAR COMPRAS
-	=============================================*/
+	// /*=============================================
+	// MOSTRAR COMPRAS
+	// =============================================*/
 
-	static public function ctrMostrarCompras($item, $valor){
+	// static public function ctrMostrarCompras($item, $valor){
 
-		$tabla = "compras";
+	// 	$tabla = "compras";
 
-		$respuesta = ModeloUsuarios::mdlMostrarCompras($tabla, $item, $valor);
+	// 	$respuesta = ModeloUsuarios::mdlMostrarCompras($tabla, $item, $valor);
 
-		return $respuesta;
+	// 	return $respuesta;
 
-	}
+	// }
 
-	/*=============================================
-	MOSTRAR COMENTARIOS EN PERFIL
-	=============================================*/
+	// /*=============================================
+	// MOSTRAR COMENTARIOS EN PERFIL
+	// =============================================*/
 
-	static public function ctrMostrarComentariosPerfil($datos){
+	// static public function ctrMostrarComentariosPerfil($datos){
 
-		$tabla = "comentarios";
+	// 	$tabla = "comentarios";
 
-		$respuesta = ModeloUsuarios::mdlMostrarComentariosPerfil($tabla, $datos);
+	// 	$respuesta = ModeloUsuarios::mdlMostrarComentariosPerfil($tabla, $datos);
 
-		return $respuesta;
+	// 	return $respuesta;
 
-	}
+	// }
 
 
-	/*=============================================
-	ACTUALIZAR COMENTARIOS
-	=============================================*/
+	// /*=============================================
+	// ACTUALIZAR COMENTARIOS
+	// =============================================*/
 
-	public function ctrActualizarComentario(){
+	// public function ctrActualizarComentario(){
 
-		if(isset($_POST["idComentario"])){
+	// 	if(isset($_POST["idComentario"])){
 
-			if(preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["comentario"])){
+	// 		if(preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["comentario"])){
 
-				if($_POST["comentario"] != ""){
+	// 			if($_POST["comentario"] != ""){
 
-					$tabla = "comentarios";
+	// 				$tabla = "comentarios";
 
-					$datos = array("id"=>$_POST["idComentario"],
-								   "calificacion"=>$_POST["puntaje"],
-								   "comentario"=>$_POST["comentario"]);
+	// 				$datos = array("id"=>$_POST["idComentario"],
+	// 							   "calificacion"=>$_POST["puntaje"],
+	// 							   "comentario"=>$_POST["comentario"]);
 
-					$respuesta = ModeloUsuarios::mdlActualizarComentario($tabla, $datos);
+	// 				$respuesta = ModeloUsuarios::mdlActualizarComentario($tabla, $datos);
 
-					if($respuesta == "ok"){
+	// 				if($respuesta == "ok"){
 
-						echo'<script>
+	// 					echo'<script>
 
-								swal({
-									  title: "¡GRACIAS POR COMPARTIR SU OPINIÓN!",
-									  text: "¡Su calificación y comentario ha sido guardado!",
-									  type: "success",
-									  confirmButtonText: "Cerrar",
-									  closeOnConfirm: false
-								},
+	// 							swal({
+	// 								  title: "¡GRACIAS POR COMPARTIR SU OPINIÓN!",
+	// 								  text: "¡Su calificación y comentario ha sido guardado!",
+	// 								  type: "success",
+	// 								  confirmButtonText: "Cerrar",
+	// 								  closeOnConfirm: false
+	// 							},
 
-								function(isConfirm){
-										 if (isConfirm) {	   
-										   history.back();
-										  } 
-								});
+	// 							function(isConfirm){
+	// 									 if (isConfirm) {	   
+	// 									   history.back();
+	// 									  } 
+	// 							});
 
-							  </script>';
+	// 						  </script>';
 
-					}
+	// 				}
 
-				}else{
+	// 			}else{
 
-					echo'<script>
+	// 				echo'<script>
 
-						swal({
-							  title: "¡ERROR AL ENVIAR SU CALIFICACIÓN!",
-							  text: "¡El comentario no puede estar vacío!",
-							  type: "error",
-							  confirmButtonText: "Cerrar",
-							  closeOnConfirm: false
-						},
+	// 					swal({
+	// 						  title: "¡ERROR AL ENVIAR SU CALIFICACIÓN!",
+	// 						  text: "¡El comentario no puede estar vacío!",
+	// 						  type: "error",
+	// 						  confirmButtonText: "Cerrar",
+	// 						  closeOnConfirm: false
+	// 					},
 
-						function(isConfirm){
-								 if (isConfirm) {	   
-								   history.back();
-								  } 
-						});
+	// 					function(isConfirm){
+	// 							 if (isConfirm) {	   
+	// 							   history.back();
+	// 							  } 
+	// 					});
 
-					  </script>';
+	// 				  </script>';
 
-				}	
+	// 			}	
 
-			}else{
+	// 		}else{
 
-				echo'<script>
+	// 			echo'<script>
 
-					swal({
-						  title: "¡ERROR AL ENVIAR SU CALIFICACIÓN!",
-						  text: "¡El comentario no puede llevar caracteres especiales!",
-						  type: "error",
-						  confirmButtonText: "Cerrar",
-						  closeOnConfirm: false
-					},
+	// 				swal({
+	// 					  title: "¡ERROR AL ENVIAR SU CALIFICACIÓN!",
+	// 					  text: "¡El comentario no puede llevar caracteres especiales!",
+	// 					  type: "error",
+	// 					  confirmButtonText: "Cerrar",
+	// 					  closeOnConfirm: false
+	// 				},
 
-					function(isConfirm){
-							 if (isConfirm) {	   
-							   history.back();
-							  } 
-					});
+	// 				function(isConfirm){
+	// 						 if (isConfirm) {	   
+	// 						   history.back();
+	// 						  } 
+	// 				});
 
-				  </script>';
+	// 			  </script>';
 
-			}
+	// 		}
 
-		}
+	// 	}
 
-	}
+	// }
 
-	/*=============================================
-	AGREGAR A LISTA DE DESEOS
-	=============================================*/
+	// /*=============================================
+	// AGREGAR A LISTA DE DESEOS
+	// =============================================*/
 
-	static public function ctrAgregarDeseo($datos){
+	// static public function ctrAgregarDeseo($datos){
 
-		$tabla = "deseos";
+	// 	$tabla = "deseos";
 
-		$respuesta = ModeloUsuarios::mdlAgregarDeseo($tabla, $datos);
+	// 	$respuesta = ModeloUsuarios::mdlAgregarDeseo($tabla, $datos);
 
-		return $respuesta;
+	// 	return $respuesta;
 
-	}
+	// }
 
-	/*=============================================
-	MOSTRAR LISTA DE DESEOS
-	=============================================*/
+	// /*=============================================
+	// MOSTRAR LISTA DE DESEOS
+	// =============================================*/
 
-	static public function ctrMostrarDeseos($item){
+	// static public function ctrMostrarDeseos($item){
 
-		$tabla = "deseos";
+	// 	$tabla = "deseos";
 
-		$respuesta = ModeloUsuarios::mdlMostrarDeseos($tabla, $item);
+	// 	$respuesta = ModeloUsuarios::mdlMostrarDeseos($tabla, $item);
 
-		return $respuesta;
+	// 	return $respuesta;
 
-	}
+	// }
 
-	/*=============================================
-	QUITAR PRODUCTO DE LISTA DE DESEOS
-	=============================================*/
-	static public function ctrQuitarDeseo($datos){
+	// /*=============================================
+	// QUITAR PRODUCTO DE LISTA DE DESEOS
+	// =============================================*/
+	// static public function ctrQuitarDeseo($datos){
 
-		$tabla = "deseos";
+	// 	$tabla = "deseos";
 
-		$respuesta = ModeloUsuarios::mdlQuitarDeseo($tabla, $datos);
+	// 	$respuesta = ModeloUsuarios::mdlQuitarDeseo($tabla, $datos);
 
-		return $respuesta;
+	// 	return $respuesta;
 
-	}
+	// }
 
-	/*=============================================
-	ELIMINAR USUARIO
-	=============================================*/
+	// /*=============================================
+	// ELIMINAR USUARIO
+	// =============================================*/
 
-	public function ctrEliminarUsuario(){
+	// public function ctrEliminarUsuario(){
 
-		if(isset($_GET["id"])){
+	// 	if(isset($_GET["id"])){
 
-			$tabla1 = "usuarios";		
-			$tabla2 = "comentarios";
-			$tabla3 = "compras";
-			$tabla4 = "deseos";
+	// 		$tabla1 = "usuarios";		
+	// 		$tabla2 = "comentarios";
+	// 		$tabla3 = "compras";
+	// 		$tabla4 = "deseos";
 
-			$id = $_GET["id"];
+	// 		$id = $_GET["id"];
 
-			if($_GET["foto"] != ""){
+	// 		if($_GET["foto"] != ""){
 
-				unlink($_GET["foto"]);
-				rmdir('vistas/img/usuarios/'.$_GET["id"]);
+	// 			unlink($_GET["foto"]);
+	// 			rmdir('vistas/img/usuarios/'.$_GET["id"]);
 
-			}
+	// 		}
 
-			$respuesta = ModeloUsuarios::mdlEliminarUsuario($tabla1, $id);
+	// 		$respuesta = ModeloUsuarios::mdlEliminarUsuario($tabla1, $id);
 			
-			ModeloUsuarios::mdlEliminarComentarios($tabla2, $id);
+	// 		ModeloUsuarios::mdlEliminarComentarios($tabla2, $id);
 
-			ModeloUsuarios::mdlEliminarCompras($tabla3, $id);
+	// 		ModeloUsuarios::mdlEliminarCompras($tabla3, $id);
 
-			ModeloUsuarios::mdlEliminarListaDeseos($tabla4, $id);
+	// 		ModeloUsuarios::mdlEliminarListaDeseos($tabla4, $id);
 
-			if($respuesta == "ok"){
+	// 		if($respuesta == "ok"){
 
-		    	$url = Ruta::ctrRuta();
+	// 	    	$url = Ruta::ctrRuta();
 
-		    	echo'<script>
+	// 	    	echo'<script>
 
-						swal({
-							  title: "¡SU CUENTA HA SIDO BORRADA!",
-							  text: "¡Debe registrarse nuevamente si desea ingresar!",
-							  type: "success",
-							  confirmButtonText: "Cerrar",
-							  closeOnConfirm: false
-						},
+	// 					swal({
+	// 						  title: "¡SU CUENTA HA SIDO BORRADA!",
+	// 						  text: "¡Debe registrarse nuevamente si desea ingresar!",
+	// 						  type: "success",
+	// 						  confirmButtonText: "Cerrar",
+	// 						  closeOnConfirm: false
+	// 					},
 
-						function(isConfirm){
-								 if (isConfirm) {	   
-								   window.location = "'.$url.'salir";
-								  } 
-						});
+	// 					function(isConfirm){
+	// 							 if (isConfirm) {	   
+	// 							   window.location = "'.$url.'salir";
+	// 							  } 
+	// 					});
 
-					  </script>';
+	// 				  </script>';
 
-		    }
+	// 	    }
 
-		}
+	// 	}
 
-	}
+	// }
 
 }

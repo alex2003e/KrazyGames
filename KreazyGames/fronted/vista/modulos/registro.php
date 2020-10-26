@@ -30,7 +30,7 @@ $icono = ControladorPlantilla::ctrEstiloPlantilla();
 <meta name="keyword" content="Lorem ipsum dolor sit amet, consectetur adipisicing, elit, Error dolorum,eius similique .">
 
 
-	<title>Krazy Games</title>
+	<title>Kreazy Games</title>
 
 	<!--=====================================
 			HOJAS DE STILO PLUGINS

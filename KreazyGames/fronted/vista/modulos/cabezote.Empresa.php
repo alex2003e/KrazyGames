@@ -74,9 +74,9 @@ if(isset($_SESSION["validarSesion"])){
 							}
 
 							echo '<li class="nav-link" >|</li>
-							 <li><a class="nav-link js-scroll-trigger" href="http://localhost:8080/kreazyGames-tienda/fronted/perfil">Perfil</a></li>
+							 <li><a class="nav-link js-scroll-trigger" href="http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted/perfil">Perfil</a></li>
 							 <li class="nav-link" >|</li>
-							 <li><a  class="nav-link js-scroll-trigger" href="http://localhost:8080/kreazyGames-tienda/fronted/salir">Salir</a></li>';
+							 <li><a  class="nav-link js-scroll-trigger" href="http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted/salir">Salir</a></li>';
 
 
 						}

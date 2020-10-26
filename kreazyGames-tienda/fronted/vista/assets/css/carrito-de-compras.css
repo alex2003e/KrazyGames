@@ -6,7 +6,8 @@ CARRITO DE COMPRAS
 }
 
 .cabeceraCarrito h3{
-	margin-top:-5px
+	margin-top:-5px;
+	position: absolute;
 }
 
 .cabeceraCheckout{
