@@ -4,7 +4,7 @@ CAPTURA DE RUTA
 
 var rutaActual = location.href;
 
-$(".btnIngreso, .facebook").click(function(){
+$(".btnIngreso, .facebook, .google").click(function(){
 
 	localStorage.setItem("rutaActual", rutaActual);
 
@@ -49,24 +49,25 @@ $("#regEmail").change(function(){
 
 			}else{
 
-				var modo = JSON.parse(respuesta).modo;
+				var modo = respuesta;
 				
 				if(modo == "directo"){
 
 					modo = "esta página";
-				}
+			 	}
 
-				$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, fue registrado a través de '+modo+', por favor ingrese otro diferente</div>')
+			// 	$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, fue registrado a través de '+modo+', por favor ingrese otro diferente</div>')
 
-					validarEmailRepetido = true;
+			// 		validarEmailRepetido = true;
 
-			}
+			 }
 
 		}
 
 	})
 
 })
+
 
 /*=============================================
 VALIDAR EL REGISTRO DE USUARIO
@@ -500,5 +501,8 @@ $("#eliminarUsuario").click(function(){
 		});
 
 })
+
+
+
 
 

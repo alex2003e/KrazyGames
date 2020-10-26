@@ -2,7 +2,10 @@
 <!--=====================================
 FOOTER
 ======================================-->
-
+<br>
+<br>
+<hr>
+<br>
 <footer class="container-fluid">
 
 	<div class="container">
@@ -128,7 +131,7 @@ FOOTER
 
 </footer>
 
-<!--
+
 
 
 <div class="container-fluid final">
@@ -139,7 +142,7 @@ FOOTER
 			
 			<div class="col-sm-6 col-xs-12 text-left text-muted">
 				
-				<h5>&copy; 2017 Todos los derechos reservados. Sitio elaborado por la Compañía</h5>
+				<h5>&copy; 2020 Todos los derechos reservados a KRAZYGAMES</h5>
 
 			</div>
 

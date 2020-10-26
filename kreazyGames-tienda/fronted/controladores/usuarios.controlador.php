@@ -4,7 +4,6 @@
 class ControladorUsuarios{
 	
 
-
 	/*=============================================
 		REGISTRO DE USUARIOS 
 	=============================================*/
@@ -29,7 +28,6 @@ class ControladorUsuarios{
 							   "email"=> $_POST["regEmail"],
 							   "emailIncripter"=>$encriptarEmail,
 							   "ubicacion"=>$_POST["regUbicacion"],
-							   "ubicacionEncriptada"=> $encriptarUbucacion,
 							   "foto"=>"",
 							   "modo"=> "directo",
 							   "verificacion"=> 1);
@@ -135,9 +133,9 @@ class ControladorUsuarios{
 
 								function(isConfirm){
 
-									if (isConfirm) {	   
-									    window.location.replace("http://localhost:8080/kreazyGames/fronted/vista/modulos/ingreso.php");	
-									  } 
+								if(isConfirm){
+									history.back();
+								} 
 							});
 
 						</script>';
@@ -172,7 +170,6 @@ class ControladorUsuarios{
 		}
 
 	}
-
 
 	/*=============================================
 	MOSTRAR USUARIO
@@ -222,6 +219,9 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
 
+				 var_dump($respuesta);
+				// var_dump($_POST["ingEmail"]);
+				// var_dump($encriptar);
 
 				if($respuesta["email"] == $_POST["ingEmail"] && $respuesta["password"] == $encriptar){
 
@@ -252,13 +252,15 @@ class ControladorUsuarios{
 						$_SESSION["nombre"] = $respuesta["nombre"];
 						$_SESSION["foto"] = $respuesta["foto"];
 						$_SESSION["email"] = $respuesta["email"];
+						$_SESSION["ubicacion"] = $respuesta["ubicacion"];
 						$_SESSION["password"] = $respuesta["password"];
-						$_SESSION["ubicacion"]= $respuesta["ubicacion"];
 						$_SESSION["modo"] = $respuesta["modo"];
 
 						echo '<script>
 							
-							window.location = localStorage.getItem("rutaActual");
+								if(isConfirm){
+									history.back();
+								}
 
 						</script>';
 
@@ -275,11 +277,10 @@ class ControladorUsuarios{
 								  confirmButtonText: "Cerrar",
 								  closeOnConfirm: false
 							},
-
 							function(isConfirm){
-									 if (isConfirm) {	   
-									    window.location = localStorage.getItem("rutaActual");
-									  } 
+								if(isConfirm){
+									history.back();
+								}
 							});
 
 							</script>';
@@ -516,6 +517,7 @@ class ControladorUsuarios{
 								if(isConfirm){
 									history.back();
 								}
+
 						});
 
 				</script>';
@@ -526,6 +528,7 @@ class ControladorUsuarios{
 
 	}
 
+	
 	/*=============================================
 	REGISTRO CON REDES SOCIALES
 	=============================================*/
@@ -681,7 +684,7 @@ class ControladorUsuarios{
 					$ruta = "vista/assets/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".png";
 
 					/*=============================================
-					MOFICAMOS TAMAÑO DE LA FOTO
+					MODIFICAMOS TAMAÑO DE LA FOTO
 					=============================================*/
 
 					$origen = imagecreatefrompng($_FILES["datosImagen"]["tmp_name"]);
@@ -706,12 +709,13 @@ class ControladorUsuarios{
 
 			}else{
 
-				$password = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$password =  md5($_POST["editarPassword"]);
 
 			}
 
 			$datos = array("nombre" => $_POST["editarNombre"],
 						   "email" => $_POST["editarEmail"],
+						   "ubicion"=>$_POST["editarUbicacion"],
 						   "password" => $password,
 						   "foto" => $ruta,
 						   "id" => $_POST["idUsuario"]);
@@ -727,6 +731,7 @@ class ControladorUsuarios{
 				$_SESSION["nombre"] = $datos["nombre"];
 				$_SESSION["foto"] = $datos["foto"];
 				$_SESSION["email"] = $datos["email"];
+				$_SESSION["ubicacion"] = $datos["ubicacion"];
 				$_SESSION["password"] = $datos["password"];
 				$_SESSION["modo"] = $_POST["modoUsuario"];
 

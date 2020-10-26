@@ -10,12 +10,12 @@ class ModeloUsuarios{
 
 	static public function mdlRegistroUsuario($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, password, email, emailIncripter, ubicacion, foto, modo, verificacion) VALUES (:nombre, :password, :email,  :emailIncripter, :ubicacion,  :foto, :modo, :verificacion)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, password, email, emailIncripter, ubicacion, foto, modo, verificacion) VALUES (:nombre, :password,:email, :emailIncripter, :ubicacion,  :foto, :modo, :verificacion)");
 
 		$stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-		$stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);	
 		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
-		$stmt->bindParam(":emailIncripter", $datos["emailIncripter"], PDO::PARAM_STR);
+		$stmt->bindParam(":emailIncripter", $datos["emailIncripter"], PDO::PARAM_STR);	
 		$stmt->bindParam(":ubicacion", $datos["ubicacion"], PDO::PARAM_STR);
 		$stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 		$stmt->bindParam(":modo", $datos["modo"], PDO::PARAM_STR);
@@ -36,7 +36,7 @@ class ModeloUsuarios{
 		$stmt = null;
 
 	}
-
+	
 	/*=============================================
 	MOSTRAR USUARIO
 	=============================================*/
@@ -94,8 +94,8 @@ class ModeloUsuarios{
 
 		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
 		$stmt -> bindParam(":email", $datos["email"], PDO::PARAM_STR);
-		$stmt -> bindParam(":ubicacion", $datos["ubicacion"], PDO::PARAM_STR);
 		$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
+		$stmt -> bindParam(":ubicacion", $datos["ubicacion"], PDO::PARAM_STR);
 		$stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
@@ -135,6 +135,7 @@ class ModeloUsuarios{
 
 	}
 
+	
 	/*=============================================
 	MOSTRAR COMENTARIOS EN PERFIL
 	=============================================*/

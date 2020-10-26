@@ -9,6 +9,7 @@ $servidor = Ruta::ctrRutaServidor();
 
 if(!isset($_SESSION["validarSesion"])){
 
+
 	echo '<script>
 	
 		window.location = "'.$url.'";
@@ -553,9 +554,10 @@ SECCIÓN PERFIL
 
 							echo '<input type="hidden" value="'.$_SESSION["id"].'" id="idUsuario" name="idUsuario">
 							      <input type="hidden" value="'.$_SESSION["password"].'" name="passUsuario">
-							      <input type="hidden" value="'.$_SESSION["ubicacion"].'" name="ubicaUsuario">
+							      <input type="hidden" value="'.$_SESSION["modo"].'" name="modoUsuario" id="modoUsuario">
 							      <input type="hidden" value="'.$_SESSION["foto"].'" name="fotoUsuario" id="fotoUsuario">
-							      <input type="hidden" value="'.$_SESSION["modo"].'" name="modoUsuario" id="modoUsuario">';
+							      
+							      ';
 
 
 							if($_SESSION["modo"] == "directo"){
@@ -640,7 +642,7 @@ SECCIÓN PERFIL
 									<div class="input-group">
 								
 											<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-											<input type="text" class="form-control" id="editarPassword" name="editarPassword" value="placeholder="Escribe la nueva Ubicacion">
+											<input type="text" class="form-control" id="editarPassword" name="editarPassword" value="placeholder="Escribe la nueva contraseña">
 
 									</div>
 									
@@ -671,6 +673,17 @@ SECCIÓN PERFIL
 										<input type="text" class="form-control" id="editarEmail" name="editarEmail" value="'.$_SESSION["email"].'">
 
 									</div>
+								<br>
+
+								<label class="control-label text-muted text-uppercase" for="editarUbicacion">Cambiar Ubicación:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+										<input type="text" class="form-control" id="editarUbicacion" name="editarUbicacion" value="'.$_SESSION["ubicacion"].'" >
+
+									</div>
 
 								<br>
 
@@ -684,17 +697,8 @@ SECCIÓN PERFIL
 									</div>
 
 								<br>
-
-								<label class="control-label text-muted text-uppercase" for="editarUbicacion">Cambiar Ubicación:</label>
-
-								<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-										<input type="text" class="form-control" id="editarUbicacion" name="editarUbicacion" value="'.$_SESSION["ubicacion"].'" >
-
-									</div>
-
 								<br>
+								
 
 								<button type="submit" class="btn btn-default backColor btn-md pull-left">Actualizar Datos</button>';
 

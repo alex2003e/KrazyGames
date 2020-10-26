@@ -1,6 +1,6 @@
 /*=============================================
-=               PALNTILLA                    =
-===============================================*/
+PLANTILLA
+=============================================*/
 
 var rutaOculta = $("#rutaOculta").val();
 
@@ -9,36 +9,28 @@ $('[data-toggle="tooltip"]').tooltip();
 
 $.ajax({
 
-	url:rutaOculta + "ajax/plantilla.ajax.php",
-	success:function (respuesta){
+	url:rutaOculta+"ajax/plantilla.ajax.php",
+	success:function(respuesta){
 
-
-		var colorTexto = (JSON.parse(respuesta).colorTexto);
+		var colorFondo = JSON.parse(respuesta).colorFondo;
+		var colorTexto = JSON.parse(respuesta).colorTexto;
+		var barraSuperior = JSON.parse(respuesta).barraSuperior;
+		var textoSuperior = JSON.parse(respuesta).textoSuperior;
 		
-		var colorFondo = (JSON.parse(respuesta).colorFondo);
+		$(".backColor, .backColor a").css({"background": colorFondo,
+											"color": colorTexto})
 
-		var barraSuprior = (JSON.parse(respuesta).barraSuprior);
-
-		var textoSuprior = (JSON.parse(respuesta).textoSuprior);
-
-		$(".backColor").css({"background": colorFondo});
-
-		$(".backColor a").css({"color": colorTexto});
-		
-		$(".barraSuperior").css({"background": barraSuprior});
-
-		$(".textoSperior a").css({"color": textoSuprior});	
-
-
-
-
+		$(".barraSuperior, .barraSuperior a").css({"background": barraSuperior, 
+			                                       "color": textoSuperior})
 
 	}
 
 })
+
 /*=============================================
-   PRODUCTOS	CUADRICULA O LISTA
-===============================================*/
+CUADRÍCULA O LISTA
+=============================================*/
+
 var btnList = $(".btnList");
 
 for(var i = 0; i < btnList.length; i++){
@@ -68,53 +60,80 @@ for(var i = 0; i < btnList.length; i++){
 	})
 
 }
+
 /*=============================================
-EFECTO CON SCROLL
-===============================================*/
+EFECTOS CON EL SCROLL
+=============================================*/
+
 $(window).scroll(function(){
 
 	var scrollY = window.pageYOffset;
 
 	if(window.matchMedia("(min-width:768px)").matches){
 
-		if(scrollY < ($(".banner").offset().top)-150){
+		if($(".banner").html() != null){
 
-			$(".banner img").css({"margin-top":-scrollY/6+"px"})
+			if(scrollY < ($(".banner").offset().top)-150){
 
-		}else{
+				$(".banner img").css({"margin-top":-scrollY/3+"px"})
 
-			scrollY = 0;
+			}else{
+
+				scrollY = 0;
+			}
+
 		}
 
 	}	
 	
 })
+
 $.scrollUp({
+
 	scrollText:"",
 	scrollSpeed: 2000,
-	easingType:"easeOutQuint"
+	easingType: "easeOutQuint"
+
 });
+
 /*=============================================
-		MIGAS DE PAN
-===============================================*/
+MIGAS DE PAN
+=============================================*/
 
 var pagActiva = $(".pagActiva").html();
 
-if (pagActiva != null ){
+if(pagActiva != null){
 
-		var regPagActiva = pagActiva.replace(/-/g, " ");
+	var regPagActiva = pagActiva.replace(/-/g, " ");
 
-		$(".pagActiva").html(regPagActiva);
+	$(".pagActiva").html(regPagActiva);
+
 }
+
+
 /*=============================================
-	ENLACES PAGINACION
-===============================================*/
+ENLACES PAGINACIÓN
+=============================================*/
 
 var url = window.location.href;
 
 var indice = url.split("/");
 
+var pagActual =indice[5];
+
+if(isNaN(pagActual)){
+
+   $("#item1").addClass("active");
+   
+}else{
+
+   $("#item"+pagActual).addClass("active");
+ 
+}
 
 
-$("#item"+indice.pop()).addClass("active");
+
+
+
+
 

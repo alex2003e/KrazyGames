@@ -135,7 +135,7 @@ class ControladorUsuarios{
 								function(isConfirm){
 
 									if (isConfirm) {	   
-									    window.location.replace("http://localhost:8080/kreazyGames/fronted/vista/modulos/ingreso.php");	
+									    window.location.replace("http://localhost:8080/KRAZYGAMES/kreazyGames/fronted/vista/modulos/ingreso.php");	
 									  } 
 							});
 
@@ -278,7 +278,7 @@ class ControladorUsuarios{
 
 							function(isConfirm){
 									 if (isConfirm) {	   
-									    window.location.replace("http://localhost:8080/kreazyGames-tienda/fronted/");	
+									    window.location.replace("http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted/");	
 									  } 
 							});
 

@@ -18,7 +18,7 @@ $jsonRedesSociales = json_decode($social["redesSociales"],true);
                 <h3 class="section-subheading text-muted">Como empresa nos sentimos orgullosos de contar con nuestros usuarios.</h3>
             </div>
             <div class="row text-center">
-              <a class="col-md-4" href="http://localhost:8080/kreazyGames-tienda/fronted/" target="_blank">
+              <a class="col-md-4" href="http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted/" target="_blank">
                     <span class="fa-stack fa-4x"><i class="fas fa-circle fa-stack-2x text-primary"></i><i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i></span>
                     <h4 class="my-3">Tienda</h4><br>
                     <p class="text-muted"> <Blockquote style = "border: none">Aquí podrás encontrar nuestros productos y conocer más sobre ellos.</Blockquote></p>
@@ -41,7 +41,7 @@ $jsonRedesSociales = json_decode($social["redesSociales"],true);
             <div class="row">
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="portfolio-item">
-                        <a class="portfolio-link"  href="http://localhost:8080/kreazyGames-tienda/fronted/arjetas-locas" target="_blank">
+                        <a class="portfolio-link"  href="http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted/arjetas-locas" target="_blank">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -55,7 +55,7 @@ $jsonRedesSociales = json_decode($social["redesSociales"],true);
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="portfolio-item">
-                        <a class="portfolio-link"  href="http://localhost:8080/kreazyGames-tienda/fronted//hidroearth" target="_blank"><div class="portfolio-hover">
+                        <a class="portfolio-link"  href="http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted//hidroearth" target="_blank"><div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="<?php echo $servidor;?>vistas/img/portfolio/02-thumbnail.jpg" alt=""
@@ -68,7 +68,7 @@ $jsonRedesSociales = json_decode($social["redesSociales"],true);
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="portfolio-item">
-                        <a class="portfolio-link"  href="http://localhost:8080/kreazyGames-tienda/fronted/" target="_blank">
+                        <a class="portfolio-link"  href="http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted/" target="_blank">
                          <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>

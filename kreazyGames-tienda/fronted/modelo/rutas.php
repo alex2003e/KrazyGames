@@ -8,7 +8,7 @@ class Ruta{
 
 	public function ctrRuta(){
 
-		return "http://localhost:8080/kreazyGames-tienda/fronted/";
+		return "http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted/";
 	
 	}
 
@@ -18,7 +18,7 @@ class Ruta{
 
 	public function ctrRutaServidor(){
 
-		return "http://localhost:8080/kreazyGames-tienda/backend/";
+		return "http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/backend/";
 	
 	}
 
