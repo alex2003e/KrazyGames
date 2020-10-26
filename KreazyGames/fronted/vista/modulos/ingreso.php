@@ -15,7 +15,7 @@ $icono = ControladorPlantilla::ctrEstiloPlantilla();
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Krazy Games</title>
+	<title>Kreazy Games</title>
 
 	<!--=====================================
 			HOJAS DE STILO PLUGINS
