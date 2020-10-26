@@ -233,7 +233,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 									</button>';
 
-									if($value["tipo"] == "fisico" && $value["precio"] != 0){
+									if($value["tipo"] == "fisico	" && $value["precio"] != 0){
 
 										if($value["oferta"] != 0){
 
@@ -255,8 +255,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 									}
 
-									echo ' 
-									<a href="'.$value["ruta"].'" class="pixelProducto">
+									echo '<a href="'.$value["ruta"].'" class="pixelProducto">
 									
 										<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
 											

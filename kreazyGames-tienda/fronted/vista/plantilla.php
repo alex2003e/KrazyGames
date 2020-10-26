@@ -12,7 +12,7 @@
 
 <meta name="keyword" content="Lorem ipsum dolor sit amet, consectetur adipisicing, elit, Error dolorum,eius similique .">
 
-	<title>Kreazy Games</title>
+	<title>Krazy Games</title>
 	<?php
 		/*=============================================
 		=       MANTENER LA RUTA                      =
@@ -62,8 +62,6 @@ echo '<link rel="shortcut icon" href="'.$url.$icono["icono"].'">';
     <link rel="stylesheet" href="<?php echo $url; ?>vista/assets/css/productos.css">
     <link rel="stylesheet" href="<?php echo $url; ?>vista/assets/css/infoproducto.css">
     <link rel="stylesheet" href="<?php echo $url; ?>vista/assets/css/perfil.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>vista/assets/css/carrito-de-compras.css">
-
 
     
    
@@ -209,8 +207,6 @@ if(isset($_GET["ruta"])){
 <script src="<?php echo $url; ?>vista/assets/js/infroproducto.js"></script>
 <script src="<?php echo $url; ?>vista/assets/js/ubicacion.js"></script>
 <script src="<?php echo $url; ?>vista/assets/js/registroFacebook.js"></script>
-<script src="<?php echo $url; ?>vista/assets/js/carrito-de-compras.js"></script>
-
 
 
 <script>

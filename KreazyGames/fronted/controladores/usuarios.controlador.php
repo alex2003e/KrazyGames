@@ -116,7 +116,7 @@ class ControladorUsuarios{
 									if(isConfirm){
 										history.back();
 									}
-							    });
+							});
 
 						</script>';
 
@@ -137,7 +137,7 @@ class ControladorUsuarios{
 									if (isConfirm) {	   
 									    window.location.replace("http://localhost:8080/KRAZYGAMES/kreazyGames/fronted/vista/modulos/ingreso.php");	
 									  } 
-							    });
+							});
 
 						</script>';
 
@@ -257,8 +257,8 @@ class ControladorUsuarios{
 						$_SESSION["modo"] = $respuesta["modo"];
 
 						echo '<script>
-							history.back();
-							window.location.replace("http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted/");
+							
+							window.location.replace("http://localhost:8080/kreazyGames-tienda/fronted/");
 
 						</script>';
 

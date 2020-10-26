@@ -214,7 +214,7 @@ HEADER
 				
 				</a>	
 
-				<p>TU CARRITO : <span class="cantidadCesta"></span> <br> COP $ : <span class="sumaCesta"></span></p>	
+				<p>TU CARRITO : <span class="cantidadCesta"></span> <br> COP $ :<span class="sumaCesta"></span></p>	
 
 			</div>
 
@@ -382,7 +382,7 @@ VENTANA MODAL PARA EL REGISTRO
 
 
 				<!--=====================================
-				 CONDICIONES DE USO Y POLÍTICAS DE PRIVACIDAD
+				https://www.iubenda.com/ CONDICIONES DE USO Y POLÍTICAS DE PRIVACIDAD
 				======================================-->
 
 					<div class="checkBox">
@@ -405,9 +405,8 @@ VENTANA MODAL PARA EL REGISTRO
                         $registro -> ctrRegistroUsuario();
 
 
-                        
-                    ?>
 
+                    ?>
 					<input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">
 			</form>  
 					<div class="ubicacion">
