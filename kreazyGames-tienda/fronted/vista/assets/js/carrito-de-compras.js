@@ -198,87 +198,76 @@ $(".agregarCarrito").click(function(){
 	var tipo = $(this).attr("tipo");
 	var peso = $(this).attr("peso");
 
-	var agregarAlCarrito = false;
 
-	/*=============================================
-	CAPTURAR DETALLES
-	=============================================*/
+	// var agregarAlCarrito = false;
 
-	if(tipo == "virtual"){
+	// /*=============================================
+	// CAPTURAR DETALLES
+	// =============================================*/
 
-		agregarAlCarrito = true;
+	// if(tipo == "virtual"){
 
-	}else{
+	// 	agregarAlCarrito = true;
 
-		var seleccionarDetalle = $(".seleccionarDetalle");
+	// }else{
 
-		for(var i = 0; i < seleccionarDetalle.length; i++){
+	// 	var seleccionarDetalle = $(".seleccionarDetalle");
 
-			if($(seleccionarDetalle[i]).val() == ""){
+	// 	for(var i = 0; i < seleccionarDetalle.length; i++){
 
-				swal({
-					  title: "Debe seleccionar Talla y Color",
-					  text: "",
-					  type: "warning",
-					  showCancelButton: false,
-					  confirmButtonColor: "#DD6B55",
-					  confirmButtonText: "¡Seleccionar!",
-					  closeOnConfirm: false
-					})
 
-			}else{
 
-				titulo = titulo + "-" + $(seleccionarDetalle[i]).val();
+	// 			titulo = titulo + "-" + $(seleccionarDetalle[i]).val();
 
-				agregarAlCarrito = true;
+	// 			agregarAlCarrito = true;
 
-			}
+			
 
-		}		
+	// 	}		
 
-	}
+	// }
 
-	/*=============================================
-	ALMACENAR EN EL LOCALSTARGE LOS PRODUCTOS AGREGADOS AL CARRITO
-	=============================================*/
+	// /*=============================================
+	// ALMACENAR EN EL LOCALSTARGE LOS PRODUCTOS AGREGADOS AL CARRITO
+	// =============================================*/
 
-	if(agregarAlCarrito){
+	// if(agregarAlCarrito){
 
-		/*=============================================
-		RECUPERAR ALMACENAMIENTO DEL LOCALSTORAGE
-		=============================================*/
+	// 	=============================================
+	// 	RECUPERAR ALMACENAMIENTO DEL LOCALSTORAGE
+	// 	=============================================
 
-		if(localStorage.getItem("listaProductos") == null){
+	// 	if(localStorage.getItem("listaProductos") == null){
 
-			listaCarrito = [];
+	// 		listaCarrito = [];
 
-		}else{
+	// 	}else{
 
-			var listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
+	// 		var listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
 
-			for(var i = 0; i < listaProductos.length; i++){
+	// 		for(var i = 0; i < listaProductos.length; i++){
 
-				if(listaProductos[i]["idProducto"] == idProducto && listaProductos[i]["tipo"] == "virtual"){
+	// 			if(listaProductos[i]["idProducto"] == idProducto && listaProductos[i]["tipo"] == "virtual"){
 
-					swal({
-					  title: "El producto ya está agregado al carrito de compras",
-					  text: "",
-					  type: "warning",
-					  showCancelButton: false,
-					  confirmButtonColor: "#DD6B55",
-					  confirmButtonText: "¡Volver!",
-					  closeOnConfirm: false
-					})
+	// 				swal({
+	// 				  title: "El producto ya está agregado al carrito de compras",
+	// 				  text: "",
+	// 				  type: "warning",
+	// 				  showCancelButton: false,
+	// 				  confirmButtonColor: "#DD6B55",
+	// 				  confirmButtonText: "¡Volver!",
+	// 				  closeOnConfirm: false
+	// 				})
 
-					return;
+	// 				return;
 
-				}
+	// 			}
 
-			}
+	// 		}
 
-			listaCarrito.concat(localStorage.getItem("listaProductos"));
+	// 		listaCarrito.concat(localStorage.getItem("listaProductos"));
 
-		}
+	// 	}
 
 		listaCarrito.push({"idProducto":idProducto,
 						   "imagen":imagen,
@@ -287,45 +276,45 @@ $(".agregarCarrito").click(function(){
 					       "tipo":tipo,
 				           "peso":peso,
 				           "cantidad":"1"});
-
+console.log("listaCarrito", listaCarrito);
 		localStorage.setItem("listaProductos", JSON.stringify(listaCarrito));
 
-		/*=============================================
-		ACTUALIZAR LA CESTA
-		=============================================*/
+	// 	/*=============================================
+	// 	ACTUALIZAR LA CESTA
+	// 	=============================================*/
 
-		var cantidadCesta = Number($(".cantidadCesta").html()) + 1;
-		var sumaCesta = Number($(".sumaCesta").html()) + Number(precio);
+	// 	var cantidadCesta = Number($(".cantidadCesta").html()) + 1;
+	// 	var sumaCesta = Number($(".sumaCesta").html()) + Number(precio);
 
-		$(".cantidadCesta").html(cantidadCesta);
-		$(".sumaCesta").html(sumaCesta);
+	// 	$(".cantidadCesta").html(cantidadCesta);
+	// 	$(".sumaCesta").html(sumaCesta);
 
-		localStorage.setItem("cantidadCesta", cantidadCesta);
-		localStorage.setItem("sumaCesta", sumaCesta);
+	// 	localStorage.setItem("cantidadCesta", cantidadCesta);
+	// 	localStorage.setItem("sumaCesta", sumaCesta);
 		
-		/*=============================================
-		MOSTRAR ALERTA DE QUE EL PRODUCTO YA FUE AGREGADO
-		=============================================*/
+	// 	=============================================
+	// 	MOSTRAR ALERTA DE QUE EL PRODUCTO YA FUE AGREGADO
+	// 	=============================================
 
-		swal({
-			  title: "",
-			  text: "¡Se ha agregado un nuevo producto al carrito de compras!",
-			  type: "success",
-			  showCancelButton: true,
-			  confirmButtonColor: "#DD6B55",
-			  cancelButtonText: "¡Continuar comprando!",
-			  confirmButtonText: "¡Ir a mi carrito de compras!",
-			  closeOnConfirm: false
-			},
-			function(isConfirm){
-				if (isConfirm) {	   
-					 window.location = rutaOculta+"carrito-de-compras";
-				} 
-		});
+	// 	swal({
+	// 		  title: "",
+	// 		  text: "¡Se ha agregado un nuevo producto al carrito de compras!",
+	// 		  type: "success",
+	// 		  showCancelButton: true,
+	// 		  confirmButtonColor: "#DD6B55",
+	// 		  cancelButtonText: "¡Continuar comprando!",
+	// 		  confirmButtonText: "¡Ir a mi carrito de compras!",
+	// 		  closeOnConfirm: false
+	// 		},
+	// 		function(isConfirm){
+	// 			if (isConfirm) {	   
+	// 				 window.location = rutaOculta+"carrito-de-compras";
+	// 			} 
+	// 	});
 
-	}
-
+	// }
 })
+
 
 /*=============================================
 /*=============================================
@@ -346,7 +335,7 @@ $(document).on("click", ".quitarItemCarrito", function(){
 	var cantidad = $(".cuerpoCarrito .cantidadItem");
 
 	/*=============================================
-	SI AÚN QUEDAN PRODUCTOS VOLVERLOS AGREGAR AL CARRITO (LOCALSTORAGE)
+	SI AÚN QUEDAN PRODUCTOS VOLVERLOS  AL CARRITO (LOCALSTORAGE)
 	=============================================*/
 
 	listaCarrito = [];

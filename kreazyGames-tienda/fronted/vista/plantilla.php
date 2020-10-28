@@ -213,7 +213,7 @@ if(isset($_GET["ruta"])){
 
 
 
-<script>
+<!-- <script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '773156199930563',
@@ -233,7 +233,7 @@ if(isset($_GET["ruta"])){
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-</script>
+</script> -->
 
 
 </body>

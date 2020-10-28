@@ -4,7 +4,7 @@ CAPTURA DE RUTA
 
 var rutaActual = location.href;
 
-$(".btnIngreso, .facebook, .google").click(function(){
+$(".btnIngreso, .facebook").click(function(){
 
 	localStorage.setItem("rutaActual", rutaActual);
 
@@ -49,25 +49,24 @@ $("#regEmail").change(function(){
 
 			}else{
 
-				var modo = respuesta;
+				var modo = JSON.parse(respuesta).modo;
 				
 				if(modo == "directo"){
 
 					modo = "esta página";
-			 	}
+				}
 
-			// 	$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, fue registrado a través de '+modo+', por favor ingrese otro diferente</div>')
+				$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, fue registrado a través de '+modo+', por favor ingrese otro diferente</div>')
 
-			// 		validarEmailRepetido = true;
+					validarEmailRepetido = true;
 
-			 }
+			}
 
 		}
 
 	})
 
 })
-
 
 /*=============================================
 VALIDAR EL REGISTRO DE USUARIO
@@ -162,11 +161,11 @@ function registroUsuario(){
 	VALIDAR POLÍTICAS DE PRIVACIDAD
 	=============================================*/
 
-	var politicas = $("#regPoliticas:checked").val();
+	var politicas = $("#regTerminos:checked").val();
 	
 	if(politicas != "on"){
 
-		$("#regPoliticas").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Debe aceptar nuestras condiciones de uso y políticas de privacidad</div>')
+		$("#regTerminos").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Debe aceptar nuestras condiciones de uso y políticas de privacidad</div>')
 
 		return false;
 
@@ -501,8 +500,5 @@ $("#eliminarUsuario").click(function(){
 		});
 
 })
-
-
-
 
 

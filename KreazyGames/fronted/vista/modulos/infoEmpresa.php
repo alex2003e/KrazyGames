@@ -17,18 +17,17 @@ $jsonRedesSociales = json_decode($social["redesSociales"],true);
                 <h2 class="section-heading text-uppercase">Servicios</h2>
                 <h3 class="section-subheading text-muted">Como empresa nos sentimos orgullosos de contar con nuestros usuarios.</h3>
             </div>
+             <center>
             <div class="row text-center">
+           
               <a class="col-md-4" href="http://localhost:8080/KRAZYGAMES/kreazyGames-tienda/fronted/" target="_blank">
                     <span class="fa-stack fa-4x"><i class="fas fa-circle fa-stack-2x text-primary"></i><i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i></span>
                     <h4 class="my-3">Tienda</h4><br>
                     <p class="text-muted"> <Blockquote style = "border: none">Aquí podrás encontrar nuestros productos y conocer más sobre ellos.</Blockquote></p>
               </a>
-                <a class="col-md-4" href="<?php echo $url;?>vista/modulos/problematicas.php">
-                    <span class="fa-stack fa-4x"><i class="fas fa-circle fa-stack-2x text-primary"></i><i class="fas fa-laptop fa-stack-1x fa-inverse"></i></span>
-                    <h4 class="my-3">Resolucion de problematicás.</h4>
-                    <p class="text-muted"><Blockquote style = "border: none">Nos enfocamos en soluciónar problemas que afectan en el desarrollo de la sociedad,por esto creamos esta sección donde comentamos estas problematicas y su desenlace.</p>
-</Blockquote></a>
+            
             </div>
+            </center> 
         </div>
     </section>
     <!-- Portfolio Grid-->

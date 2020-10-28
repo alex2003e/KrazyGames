@@ -604,17 +604,24 @@ INFOPRODUCTOS
 
 						echo '<div class="col-md-6 col-xs-12">';
 
-							if($infoproducto["tipo"]=="virtual"){
-						
-								echo '<button class="btn btn-default btn-block btn-lg backColor">ACCEDER AHORA</button>';
+							
 
-							}else{
+								echo '<button class="btn btn-default btn-block btn-lg backColor">COMPRAR AHORA</button>';
 
-								echo '<button class="btn btn-default btn-block btn-lg backColor">SOLICITAR AHORA</button>';
-
-							}
+							
 
 							echo '</div>';
+							echo '<div class="col-lg-6 col-md-8 col-xs-12">
+									
+									<button class="btn btn-default btn-block btn-lg backColor agregarCarrito"  idProducto="'.$infoproducto["id"].'" imagen="'.$servidor.$infoproducto["portada"].'" titulo="'.$infoproducto["titulo"].'" precio="'.$infoproducto["precio"].'" tipo="'.$infoproducto["tipo"].'" peso="'.$infoproducto["peso"].'">
+
+									ADICIONAR AL CARRITO 
+
+									<i class="fa fa-shopping-cart"></i>
+
+									</button>
+
+								</div>';
 
 					}else{
 
